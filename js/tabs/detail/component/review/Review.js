@@ -71,7 +71,7 @@ class Review extends React.Component {
     return (
       <View style={styles.container}>
         <Text style={styles.text}>Top Reviews</Text>
-        {source.result.reviews.map((data, index) => {
+        {source.result.reviews && source.result.reviews.map((data, index) => {
           return (
             <View style={styles.box} key={`review-${index}`} >
               <TouchableOpacity 

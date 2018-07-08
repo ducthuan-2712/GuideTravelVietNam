@@ -26,25 +26,25 @@
 'use strict';
 
 // Depdencies
-import React from "react";
-import { connect } from "react-redux";
+import React from 'react'
+import { connect } from 'react-redux'
 
 // Components
 import { 
   Platform, 
   BackHandler, 
   StyleSheet 
-} from "react-native";
-import { Navigator } from "react-native-deprecated-custom-components";
+} from 'react-native'
+import { Navigator } from 'react-native-deprecated-custom-components'
 
 // Pages
-import FilterScreen from './filter/FilterScreen';
-import GTabsView from './tabs/GTabsView';
-import GalleryCarousel from './tabs/trip/component/gallery/GalleryCarousel';
-import MyFilter from './tabs/trip/component/filter/myFilter';
-import GDetailView from './tabs/detail/GDetailView';
-import GPlanView from './tabs/plan/GPlanView';
-import MapView from './tabs/plan/component/map/MapView';
+import GTabsView from './tabs/GTabsView'
+import GDetailView from './tabs/detail/GDetailView'
+import GPlanView from './tabs/plan/GPlanView'
+import FilterScreen from './tabs/common/filter/FilterScreen'
+import GalleryCarousel from './tabs/common/gallery/GalleryCarousel'
+import MapView from './tabs/common/map/MapView'
+import MyFilter from './tabs/trip/component/filter/myFilter'
 
 // Config
 import { switchTab } from './actions';

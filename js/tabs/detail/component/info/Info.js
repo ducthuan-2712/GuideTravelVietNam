@@ -165,7 +165,7 @@ class Info extends React.Component {
     return (
       <View style={styles.box}>
         {source.result.formatted_address && this.renderAddress(source)}
-        {source.result.opening_hours.weekday_text.length && this.renderOpenHours(source)}
+        {source.result.opening_hours && source.result.opening_hours.weekday_text.length ? this.renderOpenHours(source) : null}
         {source.result.international_phone_number && this.renderPhone(source)}
         {source.result.website && this.renderWebsite(source)}
       </View>
