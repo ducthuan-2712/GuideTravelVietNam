@@ -25,9 +25,9 @@
 'use strict';
 
 // Depdencies
-import React from "react";
-import { connect } from "react-redux";
-import { Navigator } from "react-native-deprecated-custom-components";
+import React from 'react'
+import { connect } from 'react-redux'
+import { Navigator } from 'react-native-deprecated-custom-components'
 // import { createSelector } from "reselect";
 
 // Components
@@ -38,15 +38,15 @@ import {
   StyleSheet,
   Platform,
   InteractionManager
-} from "react-native";
-import GColors from "../../common/GColors";
-import ListContainer from "../../common/ListContainer";
-import GDrawerLayout from "../../common/GDrawerLayout";
-import GActivityIndicator from "../../common/GActivityIndicator";
+} from 'react-native'
+import GColors from '../../common/GColors'
+import ListContainer from '../../common/ListContainer'
+import GDrawerLayout from '../../common/GDrawerLayout'
+import GActivityIndicator from '../../common/GActivityIndicator'
 
 // Page
-import FilterScreen from "../../filter/FilterScreen";
-import GTripContainer from "./component/GTripContainer";
+import FilterScreen from '../common/filter/FilterScreen'
+import GTripContainer from './component/GTripContainer'
 
 // Config
 import {
@@ -58,19 +58,19 @@ import {
   switchTab,
   updateMyPlanerSwitch,
   resetAll
-} from "../../actions";
+} from '../../actions'
 
 type Props = {
   navigator: Navigator;
-};
+}
 
 class GTripView extends React.Component {
-  props: Props;
-  _drawer: ?GDrawerLayout;
+  props: Props
+  _drawer: ?GDrawerLayout
 
   static contextTypes = {
     openDrawer: React.PropTypes.func
-  };
+  }
 
   constructor(props) {
     super(props);
@@ -85,7 +85,7 @@ class GTripView extends React.Component {
   }
 
   componentDidMount() {
-    if(Object.keys(this.props.filter).length == 0) {
+    if (Object.keys(this.props.filter).length == 0) {
       Promise.resolve(
         this.props.dispatch(loadFilterDestination())
       ).then(() => {
@@ -96,7 +96,7 @@ class GTripView extends React.Component {
   }
 
   openMenuDrawwer() {
-    this.context.openDrawer();
+    this.context.openDrawer()
   }
 
   renderNavigationView() {
@@ -133,7 +133,7 @@ class GTripView extends React.Component {
   }
 
   handleCheck() {
-    if(Object.keys(this.props.plan).length != 0) {
+    if (Object.keys(this.props.plan).length != 0) {
       Promise.resolve(
         this.props.dispatch(updateMyPlanerSwitch(false))
       ).then(() => {
@@ -161,12 +161,9 @@ class GTripView extends React.Component {
   }
 
   render() {
-    const { destination, filter, detail, nearby } = this.props;
+    const { destination, filter, detail, nearby } = this.props
 
-    if(
-      Object.keys(detail).length == 0 ||
-      nearby.length == 0
-    ) {
+    if (Object.keys(detail).length == 0 || nearby.length == 0) {
       return <GActivityIndicator />
     }
 
@@ -230,7 +227,7 @@ var styles = StyleSheet.create({
   container: {
     flex: 1
   }
-});
+})
 
 // const data = createSelector(
 //   store => store.sessions,
@@ -245,7 +242,7 @@ function select(store) {
     nearby: store.destination.resultsNearby,
     filter: store.filter.topic,
     plan: store.plan.plan,
-  };
+  }
 }
 
-module.exports = connect(select)(GTripView);
+module.exports = connect(select)(GTripView)

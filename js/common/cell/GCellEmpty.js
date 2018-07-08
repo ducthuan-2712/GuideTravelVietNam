@@ -37,7 +37,7 @@ class GCellEmpty extends React.Component {
     return (
       <View key="local" style={styles.container}>
         <Image 
-          source={require('../../filter/img/icon-active.png')}
+          source={require('../../tabs/img/icon-active.png')}
           style={{width: 100, height: 100, marginBottom: 20}}
         />
         <HeaderTitle>Opp! Chúng tôi rất tiếc vì không tìm thấy dữ liệu.</HeaderTitle>

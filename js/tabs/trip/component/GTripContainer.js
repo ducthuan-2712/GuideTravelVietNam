@@ -22,10 +22,10 @@
  * @flow
  */
 
-'use strict';
+'use strict'
 
 // Depdencies
-import React from "react";
+import React from 'react'
 
 // Components
 import { 
@@ -33,26 +33,22 @@ import {
   Image,
   ScrollView,
   Dimensions
-} from "react-native";
-import { Text, Heading5, Heading4 } from "../../../common/GText";
-import StyleSheet from "../../../common/GStyleSheet";
-import GButton from "../../../common/GButton";
+} from 'react-native'
+import { Text, Heading5, Heading4 } from '../../../common/GText'
+import StyleSheet from '../../../common/GStyleSheet'
+import GButton from '../../../common/GButton'
 
 // Pages
-import SlideCarousel from "./carousel/SlideCarousel"
-import Gallery from "./gallery/Gallery"
+import SlideCarousel from '../../common/carousel/SlideCarousel'
+import Gallery from './gallery/Gallery'
 
 const { 
   width: viewportWidth, 
   height: viewportHeight 
-} = Dimensions.get('window');
-
-type Props = {
-
-};
+} = Dimensions.get('window')
 
 class GTripContainer extends React.Component {
-  props: Props;
+  props: Props
 
   constructor(props) {
     super(props);
@@ -68,7 +64,7 @@ class GTripContainer extends React.Component {
     this.props.navigator.push({
       gallery: synsData,
       types: true
-    });
+    })
   }
 
   handleSlide(synsData) {
@@ -88,7 +84,7 @@ class GTripContainer extends React.Component {
   }
 
   render() {
-    const { destination, filter, detail, nearby } = this.props;
+    const { destination, filter, detail, nearby } = this.props
 
     return (
       <View style={styles.container}>
@@ -108,7 +104,7 @@ class GTripContainer extends React.Component {
             <View style={styles.slide}>
               <SlideCarousel
                 source={nearby}
-                onPress={this.handleSlide} 
+                onPress={this.handleSlide}
               />
             </View>
           </View>
@@ -135,7 +131,7 @@ class GTripContainer extends React.Component {
           />
         </ScrollView>
       </View>
-    );
+    )
   }
 }
 
@@ -183,6 +179,6 @@ var styles = StyleSheet.create({
     backgroundColor: '#fe9375',
     marginLeft: 15
   }
-});
+})
 
-module.exports = GTripContainer;
+module.exports = GTripContainer

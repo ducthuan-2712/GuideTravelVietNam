@@ -178,7 +178,7 @@ class GMyContainer extends React.Component {
       <View style={styles.container}>
         <View style={styles.myEmpty}>
           {!this.state.showCalendar && <Image 
-            source={require('../../../filter/img/icon-active.png')}
+            source={require('../../img/icon-active.png')}
             style={{width: 120, height: 120, marginBottom: 10}}
           />}
           {!this.state.showCalendar && <HeaderTitle>No Notification Right Now!</HeaderTitle>}
