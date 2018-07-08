@@ -1,0 +1,26 @@
+version: "3"
+services:
+  mongo:
+    image: mongo
+    networks:
+      default:
+        aliases:
+          - mongo
+  mongorestore:
+    build: ./server/mongorestore
+    depends_on:
+      - mongo
+  parse:
+    build: ./server/parse-server
+    ports:
+      - "1337:1337"
+    depends_on:
+      - mongo
+  parse_dashboard:
+    build: ./server/parse-dashboard
+    ports:
+      - "4040:4040"
+  graphql:
+    build: ./server/graphql
+    ports:
+      - "4000:4000"
