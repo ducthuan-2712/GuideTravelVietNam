@@ -26,12 +26,11 @@ module.exports = {
   version: 111,
   testMenuEnabled: false,
   parseAppID: "oss-GuideTravelVietnam-app-2018",
-  // serverURL: 'https://guidetravelvietnam.herokuapp.com', // Server
   serverURL: "http://localhost:1337",
   graphqlURL: "http://localhost:4000/graphql",
   compatibleStoreVersion: "0.10",
   fontFamily: undefined,
-  API_KEY_GOOGLE: "AIzaSyBZyxRZpA9Ayjry6sWbsMCbRy23k4f8tbQ",
+  API_KEY_GOOGLE: "Enter your code google here",
   API_GOOGLE: "https://maps.googleapis.com/maps/api/place",
   // LIST_TYPES_GOOGLE: ['amusement_park', 'church', 'hindu_temple', 'museum', 'park', 'campground'],
   LIST_TYPES_GOOGLE: ['amusement_park', 'park'],
