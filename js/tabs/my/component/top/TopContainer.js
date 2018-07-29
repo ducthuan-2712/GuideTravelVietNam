@@ -36,6 +36,7 @@ import {
 import { Heading4, Heading5, Text } from "../../../../common/GText";
 import StyleSheet from "../../../../common/GStyleSheet";
 import GButton from "../../../../common/GButton";
+import GColors from "../../../../common/GColors";
 
 type Props = {
 
@@ -110,7 +111,7 @@ var styles = StyleSheet.create({
   },
   line: {
     width: 1,
-    backgroundColor: '#ddd',
+    backgroundColor: GColors.lightSilver,
   },
   containers: {
     flexDirection: 'row',
@@ -139,7 +140,7 @@ var styles = StyleSheet.create({
 
   },
   h4Custom: {
-    color: '#c1c1c1',
+    color: GColors.darkSilver,
   }
 });
 

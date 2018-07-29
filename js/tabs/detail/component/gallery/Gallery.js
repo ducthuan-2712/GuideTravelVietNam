@@ -37,6 +37,7 @@ import {
 import { Text, Heading4 } from "../../../../common/GText";
 import StyleSheet from "../../../../common/GStyleSheet";
 import GImage from "../../../../common/GImage";
+import GColors from "../../../../common/GColors";
 
 const { width: viewportWidth, height: viewportHeight } = Dimensions.get('window');
 
@@ -99,15 +100,15 @@ class Gallery extends React.Component {
 var styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: '#f5f5f5',
+    backgroundColor: GColors.silver,
     borderTopWidth: 1,
     borderBottomWidth: 1,
-    borderColor: '#eee',
+    borderColor: GColors.lineSilver,
     paddingTop: 10,
     paddingBottom: 20,
   },
   text: {
-    color: '#1a1917',
+    color: GColors.black,
     marginBottom: 15,
     paddingHorizontal: 20,
   },
@@ -122,4 +123,4 @@ var styles = StyleSheet.create({
   }
 });
 
-module.exports = Gallery;
+module.exports = Gallery

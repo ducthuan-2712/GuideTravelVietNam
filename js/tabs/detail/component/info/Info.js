@@ -40,6 +40,7 @@ import { Text, Heading1, Heading3, Heading2, Heading4, Heading5 } from "../../..
 import StyleSheet from "../../../../common/GStyleSheet";
 import GImage from "../../../../common/GImage";
 import GRating from "../../../../common/GRating";
+import GColors from "../../../../common/GColors";
 
 const { width: viewportWidth, height: viewportHeight } = Dimensions.get('window');
 
@@ -51,18 +52,22 @@ class Info extends React.Component {
     }
   }
 
+  showAlertOffline() {
+    Alert.alert(
+      'Không có kết nối internet',
+      'Vui lòng di chuyển đến vùng sóng tốt hơn và thử lại !',
+      [
+        {text: 'Đồng ý', onPress: () => console.log('Cancel Pressed!')},
+      ]
+    )
+  }
+
   openInfo(source) {
     Linking.canOpenURL(source.result.url).then(supported => {
       if (supported) {
         Linking.openURL(source.result.url);
       } else {
-        Alert.alert(
-          'Không thể truy cập ' + url,
-          'Vui lòng di chuyển đến vùng sóng tốt hơn và thử lại !',
-          [
-            {text: 'Đồng ý', onPress: () => console.log('Cancel Pressed!')},
-          ]
-        )
+        this.showAlertOffline()
       }
     });
   }
@@ -72,13 +77,7 @@ class Info extends React.Component {
       if (supported) {
         Linking.openURL(url);
       } else {
-        Alert.alert(
-          'Không thể truy cập ' + url,
-          'Vui lòng di chuyển đến vùng sóng tốt hơn và thử lại !',
-          [
-            {text: 'Đồng ý', onPress: () => console.log('Cancel Pressed!')},
-          ]
-        )
+        this.showAlertOffline()
       }
     });
   }
@@ -88,13 +87,7 @@ class Info extends React.Component {
       if (supported) {
         Linking.openURL(number);
       } else {
-        Alert.alert(
-          'Không thể truy cập ' + number,
-          'Vui lòng di chuyển đến vùng sóng tốt hơn và thử lại !',
-          [
-            {text: 'Đồng ý', onPress: () => console.log('Cancel Pressed!')},
-          ]
-        )
+        this.showAlertOffline()
       }
     });
   }
@@ -274,10 +267,10 @@ class Info extends React.Component {
 var styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: 'white'
+    backgroundColor: GColors.white
   },
   h1: {
-    color: '#1a1917',
+    color: GColors.black,
     paddingTop: 15,
     paddingHorizontal: 20,
   },
@@ -288,7 +281,7 @@ var styles = StyleSheet.create({
     marginBottom: 15,
   },
   box: {
-    backgroundColor: '#fff',
+    backgroundColor: GColors.white,
     paddingTop: 15,
     paddingBottom: 5,
     paddingHorizontal: 20,
@@ -301,7 +294,7 @@ var styles = StyleSheet.create({
     flexDirection: 'row',
   },
   boxText: {
-    color: '#1a1917',
+    color: GColors.black,
     marginBottom: 20,
     flex: 1,
     marginLeft: 10
@@ -329,4 +322,4 @@ var styles = StyleSheet.create({
   }
 });
 
-module.exports = Info;
+module.exports = Info

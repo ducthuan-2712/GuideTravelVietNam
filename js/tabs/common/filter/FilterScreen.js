@@ -145,10 +145,10 @@ class FilterScreen extends React.Component {
 var styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: '#f2f5f7'
+    backgroundColor: GColors.silver
   },
   bgSearchHeader: {
-    backgroundColor: '#3f6072',
+    backgroundColor: GColors.darkMain,
   },
 })
 

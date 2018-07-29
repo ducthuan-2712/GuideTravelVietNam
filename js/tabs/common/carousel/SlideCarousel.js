@@ -37,6 +37,7 @@ import {
 import Carousel from 'react-native-snap-carousel'
 import SliderEntry from './SliderEntry'
 import GCell from '../../../common/cell/GCell'
+import GColors from '../../../common/cell/GColors'
 import { Text } from '../../../common/GText'
 
 const IS_IOS = Platform.OS === 'ios'
@@ -152,11 +153,11 @@ var styles = StyleSheet.create({
     width: sliderWidth / 1.6,
   },
   box: {
-    borderColor: '#eee',
+    borderColor: GColors.lineSilver,
     borderWidth: 1,
     paddingVertical: 5,
     paddingHorizontal: 10,
-    backgroundColor: '#f5f6f7',
+    backgroundColor: GColors.lightLineSilver,
   },
   text: {
     fontSize: 12,

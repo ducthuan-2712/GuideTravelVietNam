@@ -40,6 +40,7 @@ import { Text, Heading4 } from "../../../../common/GText";
 import StyleSheet from "../../../../common/GStyleSheet";
 import GImage from "../../../../common/GImage";
 import GRating from "../../../../common/GRating";
+import GColors from "../../../../common/GColors";
 
 const { width: viewportWidth, height: viewportHeight } = Dimensions.get('window');
 
@@ -109,17 +110,17 @@ class Review extends React.Component {
 var styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: 'white'
+    backgroundColor: GColors.white
   },
   text: {
-    color: '#1a1917',
+    color: GColors.black,
     marginTop: 15,
     paddingHorizontal: 20,
   },  
   box: {
-    backgroundColor: 'white',
+    backgroundColor: GColors.white,
     borderBottomWidth: 1,
-    borderBottomColor: '#ddd',
+    borderBottomColor: GColors.lightSilver,
     padding: 20
   },
   top: {
@@ -132,7 +133,7 @@ var styles = StyleSheet.create({
   },
   h4: {
     fontWeight: 'bold',
-    color: '#fe9375',
+    color: GColors.main,
     fontSize: 14,
     margin: 0,
     padding: 0

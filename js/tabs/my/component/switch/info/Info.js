@@ -93,7 +93,7 @@ var styles = StyleSheet.create({
     marginBottom: 10
   },
   box: {
-    backgroundColor: 'white',
+    backgroundColor: GColors.white,
     borderRadius: 9,
     paddingVertical: 15,
     paddingHorizontal: 20,
@@ -111,7 +111,7 @@ var styles = StyleSheet.create({
   },
   save: {
     borderLeftWidth: 1,
-    borderLeftColor: '#ececec',
+    borderLeftColor: GColors.darkSilver,
     borderStyle: 'solid',
     paddingLeft: 15
   },
@@ -122,7 +122,7 @@ var styles = StyleSheet.create({
   },
   titleText: {
     fontSize: 12,
-    color: 'silver'
+    color: GColors.silver
   },
   titleTextCustom: {
     marginLeft: 5

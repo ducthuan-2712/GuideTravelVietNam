@@ -33,7 +33,6 @@ import {
   Image, 
   StyleSheet 
 } from "react-native";
-import GColors from '../common/GColors';
 import { Text } from '../common/GText';
 import GTouchable from '../common/GTouchable';
 
@@ -42,7 +41,6 @@ type Props = {
   selectedIcon: number;
   selected: boolean;
   title: string;
-  badge: ?string;
   onPress: () => void;
 };
 
@@ -84,16 +82,6 @@ var styles = StyleSheet.create({
   },
   selectedTitle: {
     color: '#fe9375',
-  },
-  badge: {
-    backgroundColor: '#DC3883',
-    paddingHorizontal: 10,
-    paddingVertical: 2,
-    borderRadius: 10,
-  },
-  badgeText: {
-    fontSize: 12,
-    color: 'white',
   },
 });
 

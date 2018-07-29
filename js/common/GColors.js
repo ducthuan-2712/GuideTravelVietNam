@@ -26,21 +26,24 @@
 ============================================================================= */
 
 const NAMED_COLORS = {
+  main: "rgba(254, 147, 117, 1)",
+  secondMain: "rgba(236, 124, 93, 1)",
+  darkMain: "rgba(63, 96, 114, 1)"
+
   // grayscale (light to dark)
   white: "rgba(255, 255, 255, 1)",
-  bianca: "rgba(251, 249, 240, 1)",
-  timberwolf: "rgba(218, 216, 210, 1)",
-  magnesium: "rgba(178, 178, 178, 1)",
+  silver: "rgba(242, 245, 247, 1)",
+  lightSilver: "rgba(221, 221, 221, 1)",
+  lineSilver: "rgba(238, 238, 238, 1)",
+  lightLineSilver: "rgba(245, 246, 247, 1)",
+  darkSilver: "rgba(193, 193, 193, 1)",
+  darkLightSilver: "rgba(107, 112, 121, 1)",
   black: "rgba(3, 3, 3, 1)",
+  bianca: "rgba(251, 249, 240, 1)",
+  magnesium: "rgba(178, 178, 178, 1)",
 
   // blues (light to dark)
-  iceberg: "rgba(216, 240, 246, 1)",
-  coolGray: "rgba(136, 145, 181, 1)",
-  blueBayoux: "rgba(101, 113, 135, 1)",
-  facebookBlue: "rgba(66, 103, 178, 1)",
   blue: "rgba(29, 86, 251, 1)",
-  palatinateBlue: "rgba(24, 76, 223, 1)",
-  persianBlue: "rgba(23, 68, 200, 1)",
   sapphire: "rgba(10, 42, 102, 1)",
   sapphire2: "rgba(18, 36, 108, 1)",
   tangaroa: "rgba(1, 23, 65, 1)",
@@ -52,8 +55,6 @@ const NAMED_COLORS = {
   turquoise: "rgba(0, 205, 223, 1)",
   purple: "rgba(144, 63, 199, 1)",
   pink: "rgba(245, 64, 199, 1)",
-  darkPink: "rgba(200, 40, 159, 1)",
-  orange: "rgba(247, 144, 77, 1)",
   salmon: "rgba(243, 91, 89, 1)"
 };
 

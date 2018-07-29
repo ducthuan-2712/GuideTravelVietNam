@@ -38,6 +38,7 @@ import {
 } from "react-native";
 import { Heading4, Heading5 } from "../../../../common/GText";
 import StyleSheet from "../../../../common/GStyleSheet";
+import GColors from "../../../../common/GColors";
 
 // Page
 import Info from "./info/Info"
@@ -166,7 +167,7 @@ class SwitchContainer extends React.Component {
 var styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: '#f2f5f7'
+    backgroundColor: GColors.silver
   },
 })
 

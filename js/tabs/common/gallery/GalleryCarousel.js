@@ -154,7 +154,7 @@ var styles = StyleSheet.create({
     justifyContent: 'flex-end',
   },
   color: {
-    color: '#fff',
+    color: GColors.white,
     fontSize: 14
   }
 })

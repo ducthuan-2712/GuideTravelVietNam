@@ -189,7 +189,7 @@ class MapView extends React.Component {
       <View style={styles.container}>
         <GHeader
           title="Bản đồ"
-          backgroundColor="#fe9375"
+          backgroundColor={GColors.main}
           titleColor={GColors.white}
           navItem={backItem}
         />
@@ -215,7 +215,7 @@ MapView.defaultProps = defaultProps
 var styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: '#e8e9f4'
+    backgroundColor: GColors.silver
   },
   header: {
     backgroundColor: GColors.darkBackground,
@@ -244,7 +244,7 @@ var styles = StyleSheet.create({
     },
   },
   text: {
-    color: 'white',
+    color: GColors.white,
     android: {
       fontWeight: 'bold',
       fontSize: 17,
