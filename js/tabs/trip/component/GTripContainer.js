@@ -60,17 +60,35 @@ class GTripContainer extends React.Component {
     this.handleMore = this.handleMore.bind(this);
   }
 
+  showAlertOffline() {
+    Alert.alert(
+      'Không có kết nối internet',
+      'Vui lòng di chuyển đến vùng sóng tốt hơn và thử lại !',
+      [
+        {text: 'Đồng ý', onPress: () => console.log('Cancel Pressed!')},
+      ]
+    )
+  }
+
   handleGallery(synsData) {
-    this.props.navigator.push({
-      gallery: synsData,
-      types: true
-    })
+    if (this.props.isOnline) {
+      this.props.navigator.push({
+        gallery: synsData,
+        types: true
+      })
+    } else {
+      this.showAlertOffline()
+    }
   }
 
   handleSlide(synsData) {
-    this.props.navigator.push({
-      detail: synsData
-    })
+    if (this.props.isOnline) {
+      this.props.navigator.push({
+        detail: synsData
+      })
+    } else {
+      this.showAlertOffline()
+    }
   }
 
   handleCheck() {
@@ -153,7 +171,8 @@ var styles = StyleSheet.create({
     backgroundColor: 'white',
     flex: 1,
     flexDirection: 'row',
-    paddingBottom: 10
+    paddingBottom: 10,
+    paddingTop: 20
   },
   slideTitle: {
     marginTop: 15,

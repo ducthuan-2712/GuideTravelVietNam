@@ -90,6 +90,7 @@ class LocalMap extends React.Component {
       dataMarker: '',
       coords: '',
       routesPlan: [],
+      slideIndex: 0
     }
 
     this.map = null;
@@ -97,6 +98,7 @@ class LocalMap extends React.Component {
     (this: any).onRegionChange = this.onRegionChange.bind(this);
     (this: any).handleCloseDataMaker = this.handleCloseDataMaker.bind(this);
     (this: any).handleOpenDataMaker = this.handleOpenDataMaker.bind(this);
+    (this: any).handleSlideIndex = this.handleSlideIndex.bind(this);
     (this: any).handleSlide = this.handleSlide.bind(this);
   }
 
@@ -114,15 +116,50 @@ class LocalMap extends React.Component {
     }
     if (types) {
       this.handleGetLink()
+      this.fitToCoordinates()
     }
   }
 
-  componentWillReceiveProps(nextProps: Props) {
-    const { callGoogleMap } = this.props
-    if (callGoogleMap !== nextProps.callGoogleMap) {
-      this.handleGetLink()
-    }
+  showAlertOffline() {
+    Alert.alert(
+      'Không có kết nối internet',
+      'Vui lòng di chuyển đến vùng sóng tốt hơn và thử lại !',
+      [
+        {text: 'Đồng ý', onPress: () => this.close()},
+      ]
+    )
   }
+
+  fitToCoordinates() {
+    const _this = this
+    setTimeout(() => {
+      let arrayMarkers = Immutable.List([])
+
+      Promise.resolve(
+        _this.state.markers.map((marker, i) => {
+          return arrayMarkers = arrayMarkers.push({
+            latitude: marker.geometry.location.lat,
+            longitude: marker.geometry.location.lng
+          })
+        })
+      ).then(() => {
+        _this.map.fitToCoordinates(
+          arrayMarkers,
+          {
+            edgePadding: { top: 200, right: 150, bottom: 300, left: 150 },
+            animated: true
+          }
+        )
+      })
+    }, 1000)
+  }
+
+  // componentWillReceiveProps(nextProps: Props) {
+  //   const { callGoogleMap } = this.props
+  //   if (callGoogleMap !== nextProps.callGoogleMap) {
+  //     this.handleGetLink()
+  //   }
+  // }
 
   onRegionChange(region: Object) {
     this.setState({ 
@@ -151,112 +188,6 @@ class LocalMap extends React.Component {
     })
   }
 
-  render() {
-    let renderAnimateSpin, renderAnimateMore
-    let arrayMarkers = Immutable.List([])
-
-    this.state.markers.map((marker, i) => {
-      return arrayMarkers = arrayMarkers.push({
-        latitude: marker.geometry.location.lat,
-        longitude: marker.geometry.location.lng
-      })
-    })
-
-    if (this.state.checkLoading) {
-      renderAnimateSpin = (
-        // Spin loading when map is connect to server to check data
-        <Animated.View style={[styles.pin, {opacity: this.state.fadeAnim}]}>
-          <GActivityIndicator />
-        </Animated.View>
-      );
-    }
-
-    return (
-      <View style={[styles.container, this.props.style]}>
-        <MapView
-          style={styles.map}
-          ref={ref => { this.map = ref }}
-          onLayout = {() => { this.props.types && setTimeout( () => {
-              this.map.fitToCoordinates(
-                arrayMarkers,
-                {
-                  edgePadding: { top: 50, right: 50, bottom: 50, left: 50 },
-                  animated: false
-                }
-              )
-            }, 100 )
-          }}
-          region={this.state.region}
-          onRegionChange={this.onRegionChange}
-          provider={this.props.provider}
-          // customMapStyle={customStyle}
-          showsUserLocation={true}
-          showsMyLocationButton={false}
-          followsUserLocation={Platform.OS === 'ios' ? true : false}
-          loadingEnabled={true}
-          toolbarEnabled={Platform.OS === 'ios' ? true : false}
-          moveOnMarkerPress={Platform.OS === 'ios' ? true : false}
-        >
-          {
-            this.state.markers.map((marker, i) => {
-              return (
-                <MapView.Marker
-                  key={i}
-                  coordinate={{
-                    latitude: marker.geometry.location.lat,
-                    longitude: marker.geometry.location.lng
-                  }}
-                  onPress={() => this.handleDataMaker(marker)}
-                >
-                  <GalleryMarker number={i} marker={marker} />
-                </MapView.Marker>
-              )
-            })
-          }
-
-          {
-            this.state.coords
-              ? <MapView.Polyline
-                  key="editingPolyline"
-                  // coordinates={[
-                  //     {latitude: this.state.region.latitude, longitude: this.state.region.longitude}, // optional
-                  //     ...this.props.coords,
-                  //     {latitude: this.state.lastPosition.latitude, longitude: this.state.lastPosition.longitude}, // optional
-                  // ]}
-                  coordinates={this.state.coords}
-                  strokeColor={GColors.darkBackground}
-                  fillColor="rgba(255,0,0,0.5)"
-                  strokeWidth={4}
-                />
-              : null
-          }
-
-        </MapView>
-
-        {
-          !this.props.types
-            ? <BoxMarker
-                style={styles.viewMarker}
-                dataMarker={this.props.markers[0]}
-                apiKeyGoogle={this.props.apiKeyGoogle}
-                onPress={this.handleOpenDataMaker}
-              />
-            : <View style={styles.viewRoutes}>
-                <SlideCarousel
-                  customMap={true}
-                  source={this.state.markers}
-                  onPress={this.handleOpenDataMaker}
-                  routes={this.state.routesPlan}
-                  coords={this.state.coords}
-                />
-              </View>
-        }
-
-        {renderAnimateSpin}
-      </View>
-    );
-  }
-
   handleOutLink(value: Object) {
     // Current Location
     let { markers } = this.state
@@ -276,13 +207,7 @@ class LocalMap extends React.Component {
       if (supported) {
         Linking.openURL(url)
       } else {
-        Alert.alert(
-          'Không thể truy cập ' + url,
-          'Vui lòng di chuyển đến vùng sóng tốt hơn và thử lại !',
-          [
-            {text: 'Đồng ý', onPress: () => console.log('Cancel Pressed!')},
-          ]
-        )
+        this.showAlertOffline()
       }
     })
   }
@@ -313,6 +238,12 @@ class LocalMap extends React.Component {
   handleOpenDataMaker(dataMarker) {
     this.props.navigator.push({
       detail: dataMarker
+    })
+  }
+
+  handleSlideIndex(slideIndex) {
+    this.setState({
+      slideIndex: slideIndex
     })
   }
 
@@ -396,24 +327,110 @@ class LocalMap extends React.Component {
               this.setState({ checkLoading: false }),
               this.props.preventClickDone(),
               this.animateRegion(),
-              this.props.returnCallMap()
             );
           }
         }).catch(e => {console.warn(e)})
 
     } else {
-      Alert.alert(
-        'Không có kết nối internet',
-        'Vui lòng di chuyển đến vùng sóng tốt hơn và thử lại !',
-        [
-          {text: 'Đồng ý', onPress: () => console.log('Cancel Pressed!')},
-        ]
-      )
+      this.showAlertOffline()
     }
   }
 
   decode(t,e) {
     for(var n,o,u=0,l=0,r=0,d= [],h=0,i=0,a=null,c=Math.pow(10,e||5);u<t.length;){a=null,h=0,i=0;do a=t.charCodeAt(u++)-63,i|=(31&a)<<h,h+=5;while(a>=32);n=1&i?~(i>>1):i>>1,h=i=0;do a=t.charCodeAt(u++)-63,i|=(31&a)<<h,h+=5;while(a>=32);o=1&i?~(i>>1):i>>1,l+=n,r+=o,d.push([l/c,r/c])}return d=d.map(function(t){return{latitude:t[0],longitude:t[1]}})
+  }
+
+  render() {
+    let renderAnimateSpin, renderAnimateMore
+
+    if (this.state.checkLoading) {
+      renderAnimateSpin = (
+        // Spin loading when map is connect to server to check data
+        <Animated.View style={[styles.pin, {opacity: this.state.fadeAnim}]}>
+          <GActivityIndicator />
+        </Animated.View>
+      );
+    }
+
+    return (
+      <View style={[styles.container, this.props.style]}>
+        <MapView
+          style={styles.map}
+          ref={ref => { this.map = ref }}
+          region={this.state.region}
+          onRegionChange={this.onRegionChange}
+          provider={this.props.provider}
+          // customMapStyle={customStyle}
+          showsUserLocation={true}
+          showsMyLocationButton={false}
+          followsUserLocation={Platform.OS === 'ios' ? true : false}
+          loadingEnabled={true}
+          toolbarEnabled={Platform.OS === 'ios' ? true : false}
+          moveOnMarkerPress={Platform.OS === 'ios' ? true : false}
+        >
+          {
+            this.state.markers.map((marker, i) => {
+              return (
+                <MapView.Marker
+                  key={i}
+                  coordinate={{
+                    latitude: marker.geometry.location.lat,
+                    longitude: marker.geometry.location.lng
+                  }}
+                  onPress={() => this.handleDataMaker(marker)}
+                >
+                  <GalleryMarker
+                    number={i}
+                    marker={marker}
+                    slideIndex={this.state.slideIndex}
+                  />
+                </MapView.Marker>
+              )
+            })
+          }
+
+          {
+            this.state.coords
+              ? <MapView.Polyline
+                  key="editingPolyline"
+                  // coordinates={[
+                  //     {latitude: this.state.region.latitude, longitude: this.state.region.longitude}, // optional
+                  //     ...this.props.coords,
+                  //     {latitude: this.state.lastPosition.latitude, longitude: this.state.lastPosition.longitude}, // optional
+                  // ]}
+                  coordinates={this.state.coords}
+                  strokeColor={GColors.darkBackground}
+                  fillColor="rgba(255,0,0,0.5)"
+                  strokeWidth={4}
+                />
+              : null
+          }
+
+        </MapView>
+
+        {
+          !this.props.types
+            ? <BoxMarker
+                style={styles.viewMarker}
+                dataMarker={this.props.markers[0]}
+                apiKeyGoogle={this.props.apiKeyGoogle}
+                onPress={this.handleOpenDataMaker}
+              />
+            : <View style={styles.viewRoutes}>
+                <SlideCarousel
+                  customMap={true}
+                  source={this.state.markers}
+                  onPress={this.handleOpenDataMaker}
+                  onSlideIndex={this.handleSlideIndex}
+                  routes={this.state.routesPlan}
+                  coords={this.state.coords}
+                />
+              </View>
+        }
+
+        {renderAnimateSpin}
+      </View>
+    );
   }
 }
 

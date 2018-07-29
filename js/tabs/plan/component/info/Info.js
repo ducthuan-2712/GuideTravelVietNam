@@ -48,7 +48,7 @@ class Info extends React.Component {
 
     return (
       <View style={styles.top}>
-        <Text style={styles.title}>{plan.detail.name}</Text>
+        <Text style={styles.title}>{plan.show.name}</Text>
         <View style={styles.box}>
           <View style={styles.date}>
             <View style={styles.subDate}>
@@ -68,15 +68,15 @@ class Info extends React.Component {
               </Text>
             </View>
           </View>
-          <View style={styles.save}>
-            <Text style={[styles.titleText, styles.titleTextCustom]}>
-              Saved
-            </Text>
-            <Switch
-              onValueChange={(value) => this.props.onPress(value)}
-              value={checkedSaved}
-            />
-          </View>
+          {/*<View style={styles.save}>
+                      <Text style={[styles.titleText, styles.titleTextCustom]}>
+                        Saved
+                      </Text>
+                      <Switch
+                        onValueChange={(value) => this.props.onPress(value)}
+                        value={checkedSaved}
+                      />
+                    </View>*/}
         </View>
       </View>
     );
@@ -97,7 +97,7 @@ var styles = StyleSheet.create({
   box: {
     backgroundColor: 'white',
     borderRadius: 9,
-    paddingVertical: 5,
+    paddingVertical: 15,
     paddingHorizontal: 20,
     flex: 1,
     flexDirection: 'row',

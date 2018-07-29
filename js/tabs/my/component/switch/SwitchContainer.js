@@ -33,7 +33,8 @@ import {
   View,
   TouchableOpacity,
   ScrollView,
-  Image
+  Image,
+  Alert
 } from "react-native";
 import { Heading4, Heading5 } from "../../../../common/GText";
 import StyleSheet from "../../../../common/GStyleSheet";
@@ -59,27 +60,45 @@ class SwitchContainer extends React.Component {
     super(props);
     this.state = {};
 
-    this.handleSwitch = this.handleSwitch.bind(this)
+    // this.handleSwitch = this.handleSwitch.bind(this)
     this.handleDirection = this.handleDirection.bind(this)
     this.handle = this.handle.bind(this)
     this.handChoose = this.handChoose.bind(this)
   }
 
-  handleSwitch(value) {
-    this.props.dispatch(updateMyPlanerSavedOffline(value))
+  showAlertOffline() {
+    Alert.alert(
+      'Không có kết nối internet',
+      'Vui lòng di chuyển đến vùng sóng tốt hơn và thử lại !',
+      [
+        {text: 'Đồng ý', onPress: () => console.log('Cancel Pressed!')},
+      ]
+    )
   }
 
+  // handleSwitch(value) {
+  //   this.props.dispatch(updateMyPlanerSavedOffline(value))
+  // }
+
   handleDirection(session) {
-    this.props.navigator.push({
-      map: session,
-      types: true
-    })
+    if (this.props.isOnline) {
+      this.props.navigator.push({
+        map: session,
+        types: true
+      })
+    } else {
+      this.showAlertOffline()
+    }
   }
 
   handle(session, getIndex, index) {
-    this.props.navigator.push({
-      detail: session
-    })
+    if (this.props.isOnline) {
+      this.props.navigator.push({
+        detail: session
+      })
+    } else {
+      this.showAlertOffline()
+    }
   }
 
   handChoose(slug) {
@@ -125,7 +144,7 @@ class SwitchContainer extends React.Component {
           <Info
             plan={plan}
             checkedSaved={plan.show.checkedSaved}
-            onPress={this.handleSwitch}
+            // onPress={this.handleSwitch}
           />
           {plan.detail.map((data, index) => {
             return (
@@ -149,6 +168,6 @@ var styles = StyleSheet.create({
     flex: 1,
     backgroundColor: '#f2f5f7'
   },
-});
+})
 
-module.exports = connect()(SwitchContainer);
+module.exports = connect()(SwitchContainer)

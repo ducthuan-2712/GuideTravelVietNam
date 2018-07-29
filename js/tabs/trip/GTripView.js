@@ -43,6 +43,7 @@ import GColors from '../../common/GColors'
 import ListContainer from '../../common/ListContainer'
 import GDrawerLayout from '../../common/GDrawerLayout'
 import GActivityIndicator from '../../common/GActivityIndicator'
+import GOffline from '../../common/GOffline'
 
 // Page
 import FilterScreen from '../common/filter/FilterScreen'
@@ -85,12 +86,35 @@ class GTripView extends React.Component {
   }
 
   componentDidMount() {
-    if (Object.keys(this.props.filter).length == 0) {
+    if (this.checkIsOnline(this.props.isOnline)) {
+      this._fetch()
+    }
+  }
+
+  componentWillReceiveProps(nextProps) {
+    if (this.props.isOnline !== nextProps.isOnline) {
+      if (this.checkIsOnline(nextProps.isOnline)) {
+        this._fetch()
+      }
+    }
+  }
+
+  checkIsOnline(isOnline) {
+    const { detail, nearby } = this.props
+    if (!isOnline && (Object.keys(detail).length == 0 || nearby.length == 0)) {
+      return false
+    }
+    return true
+  }
+
+  _fetch() {
+    const { filter } = this.props
+    if (Object.keys(filter).length == 0) {
       Promise.resolve(
         this.props.dispatch(loadFilterDestination())
       ).then(() => {
-        this.props.dispatch(loadAPIFromGooglePlace(this.props.filter, 'nearbysearch', 'GOOGLE_NEARBY_API')),
-        this.props.dispatch(loadAPIFromGooglePlace(this.props.filter, 'details', 'GOOGLE_DETAILS_API'))
+        this.props.dispatch(loadAPIFromGooglePlace(filter, 'nearbysearch', 'GOOGLE_NEARBY_API')),
+        this.props.dispatch(loadAPIFromGooglePlace(filter, 'details', 'GOOGLE_DETAILS_API'))
       })
     }
   }
@@ -111,13 +135,15 @@ class GTripView extends React.Component {
   }
 
   openFilterScreen() {
-    if (Platform.OS === 'ios') {
-      this.props.navigator.push({
-        filter: this.props.destination,
-        callback: this.handleCallback
-      })
-    } else {
-      this._drawer && this._drawer.openDrawer()
+    if (this.checkIsOnline(this.props.isOnline)) {
+      if (Platform.OS === 'ios') {
+        this.props.navigator.push({
+          filter: this.props.destination,
+          callback: this.handleCallback
+        })
+      } else {
+        this._drawer && this._drawer.openDrawer()
+      }
     }
   }
 
@@ -161,9 +187,9 @@ class GTripView extends React.Component {
   }
 
   render() {
-    const { destination, filter, detail, nearby } = this.props
+    const { detail, nearby } = this.props
 
-    if (Object.keys(detail).length == 0 || nearby.length == 0) {
+    if (!this.checkIsOnline(this.props.isOnline)) {
       return <GActivityIndicator />
     }
 
@@ -185,6 +211,8 @@ class GTripView extends React.Component {
   }
 
   renderContent() {
+    const { destination, filter, detail, nearby, plan, isOnline } = this.props
+
     const backItem = {
       title: "Menu",
       layout: "icon",
@@ -208,16 +236,20 @@ class GTripView extends React.Component {
         navItem={backItem}
         rightItem={rightItem}
       >
-        <GTripContainer
-          destination={this.props.destination}
-          detail={this.props.detail}
-          nearby={this.props.nearby}
-          filter={this.props.filter}
-          plan={this.props.plan}
-          navigator={this.props.navigator}
-          onPressCheck={this.handleCheck}
-          onPressMore={this.handleMore}
-        />
+        {this.checkIsOnline(isOnline)
+          ? <GTripContainer
+              destination={destination}
+              detail={detail}
+              nearby={nearby}
+              filter={filter}
+              plan={plan}
+              isOnline={isOnline}
+              navigator={this.props.navigator}
+              onPressCheck={this.handleCheck}
+              onPressMore={this.handleMore}
+            />
+          : <GOffline />
+        }
       </ListContainer>
     )
   }
@@ -242,6 +274,7 @@ function select(store) {
     nearby: store.destination.resultsNearby,
     filter: store.filter.topic,
     plan: store.plan.plan,
+    isOnline: store.checkInternet,
   }
 }
 

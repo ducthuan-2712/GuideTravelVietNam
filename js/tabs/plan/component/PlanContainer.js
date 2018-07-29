@@ -68,7 +68,7 @@ class PlanContainer extends React.Component {
       modalVisible: false,
     };
 
-    this.handleSwitch = this.handleSwitch.bind(this)
+    // this.handleSwitch = this.handleSwitch.bind(this)
     this.handleDirection = this.handleDirection.bind(this)
     this.handle = this.handle.bind(this)
     this.handleAdd = this.handleAdd.bind(this)
@@ -81,6 +81,16 @@ class PlanContainer extends React.Component {
     if(!isEdit) {
       this._fetch()
     }
+  }
+
+  showAlertOffline() {
+    Alert.alert(
+      'Không có kết nối internet',
+      'Vui lòng di chuyển đến vùng sóng tốt hơn và thử lại !',
+      [
+        {text: 'Đồng ý', onPress: () => console.log('Cancel Pressed!')},
+      ]
+    )
   }
 
   _fetch() {
@@ -98,15 +108,19 @@ class PlanContainer extends React.Component {
     }
   }
 
-  handleSwitch(value) {
-    this.props.dispatch(updateMyPlanerSavedOffline(value))
-  }
+  // handleSwitch(value) {
+  //   this.props.dispatch(updateMyPlanerSavedOffline(value))
+  // }
 
   handleDirection(session) {
-    this.props.navigator.push({
-      map: session,
-      types: true
-    })
+    if (this.props.isOnline) {
+      this.props.navigator.push({
+        map: session,
+        types: true
+      })
+    } else {
+      this.showAlertOffline()
+    }
   }
 
   handle(session, getIndex, index) {
@@ -136,10 +150,14 @@ class PlanContainer extends React.Component {
     this.setState({ 
       modalVisible: false
     },() => {
-      this.props.navigator.push({
-        filter: mergeArr,
-        callback: this.handleCallback
-      })
+      if (this.props.isOnline) {
+        this.props.navigator.push({
+          filter: mergeArr,
+          callback: this.handleCallback
+        })
+      } else {
+        this.showAlertOffline()
+      }
     })
   }
 
@@ -166,7 +184,7 @@ class PlanContainer extends React.Component {
           <Info 
             plan={plan}
             checkedSaved={plan.show.checkedSaved}
-            onPress={this.handleSwitch}
+            // onPress={this.handleSwitch}
           />
           {plan.detail.map((data, index) => {
             return (
@@ -205,4 +223,4 @@ var styles = StyleSheet.create({
   }
 });
 
-module.exports = connect()(PlanContainer);
+module.exports = connect()(PlanContainer)

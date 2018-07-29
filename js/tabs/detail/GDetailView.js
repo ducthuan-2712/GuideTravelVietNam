@@ -36,7 +36,8 @@ import {
   ScrollView,
   Platform,
   ActionSheetIOS,
-  Share
+  Share,
+  Alert
 } from "react-native";
 import GColors from '../../common/GColors';
 import GButton from '../../common/GButton';
@@ -71,6 +72,16 @@ class GDetailView extends React.Component {
     this._fetchRealm()
   }
 
+  showAlertOffline() {
+    Alert.alert(
+      'Không có kết nối internet',
+      'Vui lòng di chuyển đến vùng sóng tốt hơn và thử lại !',
+      [
+        {text: 'Đồng ý', onPress: () => this.close()},
+      ]
+    )
+  }
+
   _fetch() {
     const { detail } = this.props
     
@@ -82,7 +93,7 @@ class GDetailView extends React.Component {
         })
       })
       .catch((error) => {
-        console.error(error);
+        this.showAlertOffline()
       });
   }
 
@@ -266,6 +277,6 @@ var styles = StyleSheet.create({
     flex: 1,
     backgroundColor: 'white'
   },
-});
+})
 
-module.exports = GDetailView;
+module.exports = GDetailView

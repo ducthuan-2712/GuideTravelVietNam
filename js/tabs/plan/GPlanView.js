@@ -107,7 +107,7 @@ class GPlanView extends React.Component {
   }
 
   render() {
-    const { plan, isEdit } = this.props;
+    const { plan, isEdit, destination, isOnline } = this.props;
 
     const backItem = {
       title: "Menu",
@@ -133,7 +133,8 @@ class GPlanView extends React.Component {
         <PlanContainer
           plan={plan}
           isEdit={isEdit}
-          destination={this.props.destination}
+          destination={destination}
+          isOnline={isOnline}
           navigator={this.props.navigator}
         />
       </ListContainer>
@@ -151,8 +152,9 @@ var styles = StyleSheet.create({
 function select(store) {
   return {
     destination: store.destination.results,
-    plan: store.plan.plan
+    plan: store.plan.plan,
+    isOnline: store.checkInternet,
   }
 }
 
-module.exports = connect(select)(GPlanView);
+module.exports = connect(select)(GPlanView)

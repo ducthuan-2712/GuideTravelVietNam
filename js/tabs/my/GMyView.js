@@ -42,6 +42,7 @@ import {
 import GColors from "../../common/GColors";
 import ListContainer from "../../common/ListContainer";
 import GActivityIndicator from "../../common/GActivityIndicator";
+import GOffline from "../../common/GOffline";
 
 // Page
 import GMyContainer from "./component/GMyContainer";
@@ -72,6 +73,14 @@ class GMyView extends React.Component {
     this.deleteTrip = this.deleteTrip.bind(this)
     this.editTrip = this.editTrip.bind(this)
     this.handleSwitch = this.handleSwitch.bind(this)
+  }
+
+  checkIsOnline(isOnline) {
+    const { detail, nearby } = this.props
+    if (!isOnline && (Object.keys(detail).length == 0 || nearby.length == 0)) {
+      return false
+    }
+    return true
   }
 
   openMenuDrawwer() {
@@ -155,20 +164,25 @@ class GMyView extends React.Component {
       <SwitchContainer
         title={this.props.plan.show.name}
         plan={this.props.plan}
+        isOnline={this.props.isOnline}
         navigator={this.props.navigator}
       />
     )
   }
 
   renderGMyContainer() {
-    return (
-      <GMyContainer
-        destination={this.props.destination}
-        plan={this.props.plan}
-        navigator={this.props.navigator}
-        onPress={this.handleSwitch}
-      />
-    )
+    if (this.checkIsOnline(this.props.isOnline)) {
+      return (
+        <GMyContainer
+          destination={this.props.destination}
+          plan={this.props.plan}
+          isOnline={this.props.isOnline}
+          navigator={this.props.navigator}
+          onPress={this.handleSwitch}
+        />
+      )
+    }
+    return <GOffline />
   }
 }
 
@@ -176,12 +190,16 @@ var styles = StyleSheet.create({
   container: {
     flex: 1,
   }
-});
+})
 
 function select(store) {
   return {
     destination: store.destination.results,
-    plan: store.plan.plan
-  };
+    detail: store.destination.resultsDetail,
+    nearby: store.destination.resultsNearby,
+    plan: store.plan.plan,
+    isOnline: store.checkInternet,
+  }
 }
-module.exports = connect(select)(GMyView);
+
+module.exports = connect(select)(GMyView)

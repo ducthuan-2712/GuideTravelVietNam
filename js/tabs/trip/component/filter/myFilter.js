@@ -25,7 +25,8 @@
 'use strict';
 
 // Depdencies
-import React from "react";
+import React from "react"
+import { connect } from 'react-redux'
 
 // Components
 import { 
@@ -55,14 +56,28 @@ class myFilter extends React.Component {
     this.handleData = this.handleData.bind(this);
   }
 
+  showAlertOffline() {
+    Alert.alert(
+      'Không có kết nối internet',
+      'Vui lòng di chuyển đến vùng sóng tốt hơn và thử lại !',
+      [
+        {text: 'Đồng ý', onPress: () => console.log('Cancel Pressed!')},
+      ]
+    )
+  }
+
   close() {
     this.props.navigator.pop()
   }
 
   handleData(data) {
-    this.props.navigator.push({
-      detail: data
-    })
+    if (this.props.isOnline) {
+      this.props.navigator.push({
+        detail: data
+      })
+    } else {
+      this.showAlertOffline()
+    }
   }
 
   render() {
@@ -97,4 +112,10 @@ var styles = StyleSheet.create({
   },
 });
 
-module.exports = myFilter;
+function select(store) {
+  return {
+    isOnline: store.checkInternet,
+  }
+}
+
+module.exports = connect(select)(myFilter)
