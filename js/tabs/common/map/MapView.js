@@ -85,12 +85,10 @@ class MapView extends React.Component {
       animateRegion: false,
       handlePreventClick: false,
       init: false,
-      callGoogleMap: false,
       isOnline: this.props.isOnline
     }
 
     this.close = this.close.bind(this)
-    this.callDirection = this.callDirection.bind(this)
   }
 
   componentWillReceiveProps(nextProps: Props) {
@@ -176,19 +174,10 @@ class MapView extends React.Component {
       onPress: this.close
     }
 
-    const rightItem = {
-      layout: 'icon',
-      title: 'Định vị',
-      icon: require('../../../common/img/header/direction.png'),
-      onPress: this.callDirection,
-    }
-
     const { width, height } = Dimensions.get('window')
     const ASPECT_RATIO = width / height
     const LATITUDE_DELTA = 0.0922
     const LONGITUDE_DELTA = LATITUDE_DELTA * ASPECT_RATIO
-    const SPACE = 0.01
-    const DEFAULT_PADDING = { top: 40, right: 40, bottom: 40, left: 40 }
     const region = {
       latitude: types ? map.list[0].geometry.location.lat : map.geometry.location.lat,
       longitude: types ? map.list[0].geometry.location.lng : map.geometry.location.lng,
@@ -203,7 +192,6 @@ class MapView extends React.Component {
           backgroundColor="#fe9375"
           titleColor={GColors.white}
           navItem={backItem}
-          rightItem={types && rightItem}
         />
         <LocalMap
           navigator={this.props.navigatorPage}
@@ -214,21 +202,11 @@ class MapView extends React.Component {
           markers={types ? map.list : [map]}
           types={types}
           region={region}
-          callGoogleMap={this.state.callGoogleMap}
-          returnCallMap={_ => this.setState({callGoogleMap: false})}
           apiKeyGoogle={API_KEY_GOOGLE}
           style={styles.map}
         />
       </View>
     )
-  }
-
-  callDirection() {
-    if(!this.state.handlePreventClick) {
-      this.setState({
-        callGoogleMap: true
-      })
-    }
   }
 }
 

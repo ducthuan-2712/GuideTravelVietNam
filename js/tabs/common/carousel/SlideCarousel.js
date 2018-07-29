@@ -64,6 +64,13 @@ class SlideCarousel extends React.Component {
     this._renderItem = this._renderItem.bind(this);
   }
 
+  _handle(slideIndex) {
+    const { customMap } = this.props
+    if (customMap) {
+      this.props.onSlideIndex && this.props.onSlideIndex(slideIndex)
+    }
+  }
+
   render() {
     const { customMap } = this.props
 
@@ -77,6 +84,7 @@ class SlideCarousel extends React.Component {
         inactiveSlideOpacity={1}
         containercustomMap={customMap ? styles.sliderCustom : styles.slider}
         contentContainercustomMap={!customMap && styles.sliderContentContainer}
+        onSnapToItem={(slideIndex) => this._handle(slideIndex)}
         // useScrollView={true}
         // enableMomentum={true}
         // loop={true}
@@ -138,6 +146,7 @@ var styles = StyleSheet.create({
     flexDirection: 'row',
     alignItems: 'center',
     marginRight: 5,
+    width: itemWidth
   },
   item: {
     width: sliderWidth / 1.6,

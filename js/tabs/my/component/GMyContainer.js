@@ -33,7 +33,8 @@ import moment from "moment";
 import { 
   View,
   Image,
-  Animated
+  Animated,
+  Alert
 } from "react-native";
 import { Text, HeaderTitle } from "../../../common/GText";
 import StyleSheet from "../../../common/GStyleSheet";
@@ -72,16 +73,30 @@ class GMyContainer extends React.Component {
     this.handlePlanCallback = this.handlePlanCallback.bind(this);
   }
 
+  showAlertOffline() {
+    Alert.alert(
+      'Không có kết nối internet',
+      'Vui lòng di chuyển đến vùng sóng tốt hơn và thử lại !',
+      [
+        {text: 'Đồng ý', onPress: () => console.log('Cancel Pressed!')},
+      ]
+    )
+  }
+
   handleCheck() {
     if(Object.keys(this.props.plan.mySelectDay).length > 0 && this.props.plan.destination) {
       if(this.props.plan.resultsNearby.length != 0) {
         this._push()
       } else {
-        Promise.resolve(
-          this.props.dispatch(loadAPIFromGooglePlace(this.props.plan.destination, 'nearbysearch', 'GOOGLE_NEARBY_PLAN'))
-        ).then(() => {
-          this._push()
-        })
+        if (this.props.isOnline) {
+          Promise.resolve(
+            this.props.dispatch(loadAPIFromGooglePlace(this.props.plan.destination, 'nearbysearch', 'GOOGLE_NEARBY_PLAN'))
+          ).then(() => {
+            this._push()
+          })
+        } else {
+          this.showAlertOffline()
+        }
       }
     }
   }

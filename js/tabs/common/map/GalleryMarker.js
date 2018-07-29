@@ -21,12 +21,14 @@ class GalleryMarker extends React.Component {
   props: Props
 
   render() {
-    const { style, marker, number } = this.props
+    const { style, marker, number, slideIndex } = this.props
+    const activeBubble = number == slideIndex ? styles.bubbleActive : null
+    const activeiconAndroid = number == slideIndex ? styles.iconAndroidActive : null
 
     return (
       <View style={[styles.container, style]}>
-        <View style={styles.bubble}>
-          <Text style={styles.iconAndroid}>
+        <View style={[styles.bubble, activeBubble]}>
+          <Text style={[styles.iconAndroid, activeiconAndroid]}>
             {number+1}
           </Text>
         </View>
@@ -49,7 +51,7 @@ const styles = StyleSheet.create({
     justifyContent: 'center',
     alignItems: 'center',
     alignSelf: 'center',
-    backgroundColor: '#e8e9f4',
+    backgroundColor: 'white',
     borderColor: GColors.darkText,
     ios: {
       borderWidth: 3,
@@ -58,6 +60,9 @@ const styles = StyleSheet.create({
       borderWidth: 2,
     },
     borderRadius: 30,
+  },
+  bubbleActive: {
+    backgroundColor: '#fe9375',
   },
   arrow: {
     backgroundColor: 'transparent',
@@ -81,9 +86,11 @@ const styles = StyleSheet.create({
     justifyContent: 'center',
     alignItems: 'center',
     textAlign: 'center',
-    fontWeight: 'bold',
     lineHeight: 20,
     color: GColors.darkText,
+  },
+  iconAndroidActive: {
+    color: 'white',
   }
 })
 
