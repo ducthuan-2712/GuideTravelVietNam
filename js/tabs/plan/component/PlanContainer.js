@@ -212,13 +212,13 @@ class PlanContainer extends React.Component {
 var styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: '#f2f5f7'
+    backgroundColor: GColors.silver
   },
   containers: {
     flex: 1,
   },
   fakeBg: {
-    backgroundColor: '#fe9375',
+    backgroundColor: GColors.main,
     height: 60
   }
 });

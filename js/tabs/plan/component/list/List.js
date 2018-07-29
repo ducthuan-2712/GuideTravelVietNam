@@ -37,6 +37,7 @@ import { Text, Heading2 } from "../../../../common/GText";
 import StyleSheet from "../../../../common/GStyleSheet";
 import GButton from "../../../../common/GButton";
 import GCell from "../../../../common/cell/GCell";
+import GColors from "../../../../common/cell/GColors";
 
 type Props = {
 
@@ -116,7 +117,7 @@ var styles = StyleSheet.create({
     marginBottom: 20
   },
   box: {
-    backgroundColor: 'white',
+    backgroundColor: GColors.white,
     borderRadius: 9,
     paddingVertical: 0,
     paddingHorizontal: 0,
@@ -144,7 +145,7 @@ var styles = StyleSheet.create({
   btnCircle: {
     width: 24,
     height: 24,
-    borderColor: '#fe9375',
+    borderColor: GColors.main,
     borderWidth: 2,
     borderRadius: 24,
     justifyContent: 'center',
@@ -152,7 +153,7 @@ var styles = StyleSheet.create({
   },
   txtCircle: {
     textAlign: 'center',
-    color: '#fe9375'
+    color: GColors.main
   }
 });
 

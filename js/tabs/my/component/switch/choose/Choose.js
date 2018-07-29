@@ -36,6 +36,7 @@ import {
 } from "react-native";
 import { Text, Heading5 } from "../../../../../common/GText";
 import StyleSheet from "../../../../../common/GStyleSheet";
+import GColors from "../../../../../common/GColors";
 
 class Choose extends React.Component {
   render() {
@@ -92,13 +93,11 @@ var styles = StyleSheet.create({
     marginTop: 20,
   },
   box: {
-    // flex: 1,
     flexDirection: 'row',
     alignItems: 'center',
     justifyContent: 'center',
-    backgroundColor: '#ec7c5d',
+    backgroundColor: GColors.secondMain,
     borderRadius: 6,
-    // paddingBottom: 12,
     marginRight: 15,
     android: {
       elevation: 1
@@ -109,9 +108,8 @@ var styles = StyleSheet.create({
     height: 52,
   },
   text: {
-    // marginTop: 12,
     marginRight: 15,
-    color: 'white',
+    color: GColors.white,
   }
 });
 

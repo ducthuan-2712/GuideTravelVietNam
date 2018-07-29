@@ -234,8 +234,8 @@ class GDetailView extends React.Component {
     return (
       <ListContainer
         title={detailsJson.result.name}
-        headerBackgroundColor="#fe9375"
-        headerTitleColor={"white"}
+        headerBackgroundColor={GColors.main}
+        headerTitleColor={GColors.white}
         navItem={backItem}
         leftItem={leftItem}
         rightItem={rightItem}
@@ -275,7 +275,7 @@ class GDetailView extends React.Component {
 var styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: 'white'
+    backgroundColor: GColors.white
   },
 })
 

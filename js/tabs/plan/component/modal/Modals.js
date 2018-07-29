@@ -38,6 +38,7 @@ import {
 } from "react-native";
 import { Text, Heading2 } from "../../../../common/GText";
 import StyleSheet from "../../../../common/GStyleSheet";
+import GColors from "../../../../common/GColors";
 
 import { LIST_TYPES_GOOGLE } from "../../../../env.js";
 
@@ -124,20 +125,20 @@ class Modals extends React.Component {
 
 var styles = StyleSheet.create({
   modal: {
-    backgroundColor: 'rgba(0, 0, 0, 0.5)',
+    backgroundColor: GColors.colorWithAlpha('black', 0.5),
     flex: 1,
     justifyContent: 'center',
     padding: 20,
   },
   innerModal: {
     borderRadius: 9,
-    backgroundColor: '#fff', 
+    backgroundColor: GColors.white, 
   },
   box: {
     flexDirection: 'row',
     alignItems: 'center',
     borderBottomWidth: 1,
-    borderColor: '#ddd',
+    borderColor: GColors.lightSilver,
     paddingVertical: 10,
     paddingHorizontal: 20
   },

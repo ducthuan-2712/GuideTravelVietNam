@@ -28,6 +28,7 @@
 import React from "react";
 import { connect } from "react-redux";
 import moment from "moment";
+import { Calendar, CalendarList, Agenda } from 'react-native-calendars';
 
 // Components
 import { 
@@ -39,7 +40,7 @@ import {
 import { Text, HeaderTitle } from "../../../common/GText";
 import StyleSheet from "../../../common/GStyleSheet";
 import GButton from "../../../common/GButton";
-import { Calendar, CalendarList, Agenda } from 'react-native-calendars';
+import GColors from "../../../common/GColors";
 
 // Page
 import TopContainer from "./top/TopContainer"
@@ -209,7 +210,7 @@ class GMyContainer extends React.Component {
               markedDates={plan.mySelectDay}
               markingType={'period'}
               theme={{
-                todayTextColor: '#fe9274',
+                todayTextColor: GColors.main,
               }}
               onDayPress={(day) => this.handleSelectDay(day)}
             />}
@@ -239,7 +240,7 @@ class GMyContainer extends React.Component {
 var styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: '#f2f5f7'
+    backgroundColor: GColors.silver
   },
   myEmpty: {
     flex: 1,
@@ -252,7 +253,7 @@ var styles = StyleSheet.create({
     paddingBottom: 30
   },
   myBoxContainer: {
-    backgroundColor: 'white',
+    backgroundColor: GColors.white,
     borderRadius: 9,
     paddingVertical: 10,
     paddingHorizontal: 20,
@@ -265,14 +266,14 @@ var styles = StyleSheet.create({
     borderRadius: 9
   },
   disabled: {
-    backgroundColor: 'silver',
+    backgroundColor: GColors.silver,
   },
   actived: {
-    backgroundColor: '#fe9375',
+    backgroundColor: GColors.main,
   },
   line: {
     height: 1,
-    backgroundColor: '#ddd',
+    backgroundColor: GColors.lightSilver,
     marginVertical: 5
   }
 });

@@ -88,8 +88,7 @@ const styles = StyleSheet.create({
     marginLeft: 10,
   },
   bottom: {
-    // backgroundColor: GColors.darkBackground,
-    backgroundColor: '#252638',
+    backgroundColor: GColors.darkText,
     flexDirection: 'row',
     justifyContent: 'space-between',
     paddingHorizontal: 20,
@@ -113,7 +112,7 @@ const styles = StyleSheet.create({
     alignItems: 'flex-end',
   },
   text: {
-    color: 'white',
+    color: GColors.white,
   },
 })
 

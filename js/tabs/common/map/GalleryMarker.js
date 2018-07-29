@@ -51,7 +51,7 @@ const styles = StyleSheet.create({
     justifyContent: 'center',
     alignItems: 'center',
     alignSelf: 'center',
-    backgroundColor: 'white',
+    backgroundColor: GColors.white,
     borderColor: GColors.darkText,
     ios: {
       borderWidth: 3,
@@ -62,7 +62,7 @@ const styles = StyleSheet.create({
     borderRadius: 30,
   },
   bubbleActive: {
-    backgroundColor: '#fe9375',
+    backgroundColor: GColors.main,
   },
   arrow: {
     backgroundColor: 'transparent',
@@ -90,7 +90,7 @@ const styles = StyleSheet.create({
     color: GColors.darkText,
   },
   iconAndroidActive: {
-    color: 'white',
+    color: GColors.white,
   }
 })
 

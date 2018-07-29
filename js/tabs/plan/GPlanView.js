@@ -126,7 +126,7 @@ class GPlanView extends React.Component {
     return (
       <ListContainer
         navItem={backItem}
-        headerBackgroundColor="#fe9375"
+        headerBackgroundColor={GColors.main}
         headerTitleColor={GColors.white}
         rightItem={rightItem}
       >
@@ -145,7 +145,7 @@ class GPlanView extends React.Component {
 var styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: '#f2f5f7'
+    backgroundColor: GColors.silver
   },
 });
 

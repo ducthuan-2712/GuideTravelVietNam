@@ -12,6 +12,7 @@ import {
 // Components
 import GRating from '../../../common/GRating'
 import GImage from '../../../common/GImage'
+import GColors from '../../../common/GColors'
 
 // Config
 import { API_KEY_GOOGLE } from '../../../env'
@@ -86,13 +87,6 @@ export default class SliderEntry extends React.Component {
     }
 }
 
-const colors = {
-    black: '#1a1917',
-    gray: '#888888',
-    background1: '#B721FF',
-    background2: '#21D4FD'
-};
-
 var styles = StyleSheet.create({
   slideInnerContainer: {
     width: itemWidth,
@@ -105,7 +99,7 @@ var styles = StyleSheet.create({
     left: itemHorizontalMargin,
     right: itemHorizontalMargin,
     bottom: 18,
-    shadowColor: colors.black,
+    shadowColor: GColors.black,
     shadowOpacity: 0.25,
     shadowOffset: { width: 0, height: 10 },
     shadowRadius: 10,
@@ -114,11 +108,11 @@ var styles = StyleSheet.create({
   imageContainer: {
     flex: 1,
     marginBottom: IS_IOS ? 0 : -1, // Prevent a random Android rendering issue
-    backgroundColor: 'white',
+    backgroundColor: GColors.white,
     borderRadius: entryBorderRadius
   },
   imageContainerEven: {
-    backgroundColor: colors.black
+    backgroundColor: GColors.black
   },
   image: {
     ...StyleSheet.absoluteFillObject,
@@ -131,17 +125,17 @@ var styles = StyleSheet.create({
     height: 110,
   },
   textContainerEven: {
-    // backgroundColor: colors.black
+    // backgroundColor: GColors.black
   },
   title: {
-    color: colors.black,
+    color: GColors.black,
     fontSize: 18,
     letterSpacing: 0.5,
     maxHeight: 50,
     overflow: 'hidden'
   },
   titleEven: {
-    // color: 'white'
+
   },
   types: {
 

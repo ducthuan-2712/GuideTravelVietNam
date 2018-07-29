@@ -157,7 +157,7 @@ var styles = StyleSheet.create({
     paddingHorizontal: 20,
     justifyContent: 'center',
     alignItems: 'center',
-    backgroundColor: '#3f6072',
+    backgroundColor: GColors.darkMain,
   }
 });
 

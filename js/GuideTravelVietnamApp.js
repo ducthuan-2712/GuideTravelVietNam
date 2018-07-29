@@ -39,7 +39,6 @@ import {
   NetInfo
 } from "react-native";
 import GActivityIndicator from './common/GActivityIndicator';
-import GColors from './common/GColors';
 import LoginScreen from './login/LoginScreen';
 import GuideTravelVietnamNavigator from './GuideTravelVietnamNavigator';
 // import PushNotificationsController from './PushNotificationsController';

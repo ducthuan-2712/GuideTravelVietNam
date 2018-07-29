@@ -37,6 +37,7 @@ import {
 import { Text, Heading5, Heading4 } from '../../../common/GText'
 import StyleSheet from '../../../common/GStyleSheet'
 import GButton from '../../../common/GButton'
+import GColors from '../../../common/GColors'
 
 // Pages
 import SlideCarousel from '../../common/carousel/SlideCarousel'
@@ -156,7 +157,7 @@ class GTripContainer extends React.Component {
 var styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: '#f2f5f7'
+    backgroundColor: GColors.silver,
   },
   title: {
     alignItems: 'center',
@@ -164,11 +165,11 @@ var styles = StyleSheet.create({
     height: 24
   },
   titles: {
-    color: '#3f6072',
+    color: GColors.darkMain,
     fontSize: 12,
   },
   slider: {
-    backgroundColor: 'white',
+    backgroundColor: GColors.white,
     flex: 1,
     flexDirection: 'row',
     paddingBottom: 10,
@@ -183,7 +184,7 @@ var styles = StyleSheet.create({
     flex: 1,
     flexDirection: 'row',
     justifyContent: 'flex-end',
-    backgroundColor: 'white',
+    backgroundColor: GColors.white,
     paddingRight: 20,
     paddingBottom: 30
   },
@@ -192,10 +193,10 @@ var styles = StyleSheet.create({
     borderRadius: 40,
   },
   btnCheck: {
-    backgroundColor: '#c1c1c1'
+    backgroundColor: GColors.darkSilver
   },
   btnMore: {
-    backgroundColor: '#fe9375',
+    backgroundColor: GColors.main,
     marginLeft: 15
   }
 })
