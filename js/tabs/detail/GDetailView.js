@@ -104,9 +104,9 @@ class GDetailView extends React.Component {
       schema: [{name: detail.place_id, properties: {name: 'string', content: 'string'}}]
     }).then(realm => {
       // realm.write(() => {
-      //   let removeIcon = realm.objects(detail.place_id);
+      //   let removeIndex = realm.objects(detail.place_id);
       //   Promise.resolve(
-      //     realm.delete(removeIcon)
+      //     realm.delete(removeIndex)
       //   ).then(() => {
       //     this.setState({
       //       realmIcon: false
@@ -118,7 +118,7 @@ class GDetailView extends React.Component {
         this.setState({
           realmIcon: true,
           detailsJson: {
-            result: JSON.parse(realm.objects(detail.content))
+            result: JSON.parse(JSON.stringify(realm.objects(detail.content)))
           }
         })
       } else {
@@ -181,9 +181,9 @@ class GDetailView extends React.Component {
           })
         } else {
           // Delete multiple by passing in a `Results`, `List` or JavaScript `Array`
-          let removeIcon = realm.objects(detailsJson.result.place_id);
+          let removeIndex = realm.objects(detailsJson.result.place_id);
           Promise.resolve(
-            realm.delete(removeIcon)
+            realm.delete(removeIndex)
           ).then(() => {
             this.setState({
               realmIcon: false

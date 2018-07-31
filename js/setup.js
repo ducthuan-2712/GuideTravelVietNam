@@ -23,8 +23,6 @@
 
 // Depdencies
 import React from "react";
-// import FacebookSDK from "./FacebookSDK";
-// import Parse from "parse/react-native";
 import configureStore from "./store/configureStore";
 import { Provider } from "react-redux";
 
@@ -34,17 +32,9 @@ import GuideTravelVietnamApp from"./GuideTravelVietnamApp";
 import LaunchScreen from "./common/LaunchScreen";
 
 // Config
-// import { serverURL, parseAppID } from "./env";
 
 function setup(): ReactClass<{}> {
   console.disableYellowBox = true;
-  // Parse.initialize(parseAppID);
-  // Parse.serverURL = `${serverURL}/parse`;
-  // console.log("DEBUG!!! " + serverURL);
-
-  // FacebookSDK.init();
-  // Parse.FacebookUtils.init();
-
   // TODO: Don't prevent fontScaling on iOS (currently breaks UI)
   Text.defaultProps.allowFontScaling = false;
 
