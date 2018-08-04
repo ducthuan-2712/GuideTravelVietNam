@@ -28,7 +28,7 @@
 const NAMED_COLORS = {
   main: "rgba(254, 147, 117, 1)",
   secondMain: "rgba(236, 124, 93, 1)",
-  darkMain: "rgba(63, 96, 114, 1)"
+  darkMain: "rgba(63, 96, 114, 1)",
 
   // grayscale (light to dark)
   white: "rgba(255, 255, 255, 1)",
@@ -55,7 +55,7 @@ const NAMED_COLORS = {
   turquoise: "rgba(0, 205, 223, 1)",
   purple: "rgba(144, 63, 199, 1)",
   pink: "rgba(245, 64, 199, 1)",
-  salmon: "rgba(243, 91, 89, 1)"
+  salmon: "rgba(243, 91, 89, 1)",
 };
 
 const THEME_COLORS = {

@@ -37,7 +37,7 @@ import { Text, Heading2 } from "../../../../../common/GText";
 import StyleSheet from "../../../../../common/GStyleSheet";
 import GButton from "../../../../../common/GButton";
 import GCell from "../../../../../common/cell/GCell";
-import GColors from "../../../../../common/cell/GColors";
+import GColors from "../../../../../common/GColors";
 
 type Props = {
 
