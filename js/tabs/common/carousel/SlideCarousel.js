@@ -37,7 +37,7 @@ import {
 import Carousel from 'react-native-snap-carousel'
 import SliderEntry from './SliderEntry'
 import GCell from '../../../common/cell/GCell'
-import GColors from '../../../common/cell/GColors'
+import GColors from '../../../common/GColors'
 import { Text } from '../../../common/GText'
 
 const IS_IOS = Platform.OS === 'ios'
