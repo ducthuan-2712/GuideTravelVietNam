@@ -53,7 +53,7 @@ class Info extends React.Component {
           <View style={styles.date}>
             <View style={styles.subDate}>
               <Text style={styles.titleText}>
-                From
+                From:
               </Text>
               <Text style={styles.text}>
                 {Object.keys(plan.mySelectDay)[0]}
@@ -61,7 +61,7 @@ class Info extends React.Component {
             </View>
             <View style={styles.subDate}>
               <Text style={styles.titleText}>
-                To
+                To:
               </Text>
               <Text style={styles.text}>
                 {Object.keys(plan.mySelectDay)[Object.keys(plan.mySelectDay).length-1]}
@@ -124,13 +124,13 @@ var styles = StyleSheet.create({
   },
   titleText: {
     fontSize: 12,
-    color: GColors.silver
+    color: GColors.darkSilver
   },
   titleTextCustom: {
     marginLeft: 5
   },
   text: {
-    marginLeft: 5,
+    marginHorizontal: 5,
     color: GColors.tangaroa
   }
 });

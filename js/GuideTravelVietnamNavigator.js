@@ -42,6 +42,7 @@ import GTabsView from './tabs/GTabsView'
 import GDetailView from './tabs/detail/GDetailView'
 import GPlanView from './tabs/plan/GPlanView'
 import FilterScreen from './tabs/common/filter/FilterScreen'
+import SavePlaced from './tabs/common/save/SavePlaced'
 import GalleryCarousel from './tabs/common/gallery/GalleryCarousel'
 import MapView from './tabs/common/map/MapView'
 import MyFilter from './tabs/trip/component/filter/myFilter'
@@ -124,6 +125,7 @@ const GuideTravelVietnamNavigator = React.createClass({
     if (route.detail) { return <GDetailView detail={route.detail} navigator={navigator} /> }
     if (route.plan) { return <GPlanView callback={route.planCallback} isEdit={route.isEdit} navigator={navigator} /> }
     if (route.map) { return <MapView map={route.map} types={route.types} navigatorPage={navigator} /> }
+    if (route.savePlaced) { return <SavePlaced {...route} navigator={navigator} /> }
 
     return <GTabsView navigator={navigator} />
   }

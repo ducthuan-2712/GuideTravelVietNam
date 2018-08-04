@@ -190,6 +190,8 @@ class GDetailView extends React.Component {
             })
           })
         }
+
+        realm.close()
       })
     })
   }

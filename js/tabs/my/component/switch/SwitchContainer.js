@@ -118,7 +118,11 @@ class SwitchContainer extends React.Component {
   }
 
   handleSavedPlaced() {
-    // Realm
+    const { plan } = this.props;
+    this.props.navigator.push({
+      savePlaced: true,
+      source: plan.detail
+    })
   }
 
   handleFoodDrink() {

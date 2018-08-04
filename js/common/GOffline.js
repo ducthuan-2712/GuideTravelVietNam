@@ -30,9 +30,22 @@ import { Heading2, Heading4 } from "./GText";
 
 class GOffline extends React.Component {
   render() {
+    const { modeOfflineData } = this.props
+    if (modeOfflineData) {
+      return (
+        <View style={styles.container}>
+          <Image
+            source={require('../tabs/img/icon-active.png')}
+            style={{width: 120, height: 120, marginBottom: 10}}
+          />
+          <Heading2 style={[styles.center, styles.h2]}>You do not have any post</Heading2>
+        </View>
+      )
+    }
+
     return (
       <View style={styles.container}>
-        <Image 
+        <Image
           source={require('../tabs/img/icon-offline.png')}
           style={{width: 120, height: 120, marginBottom: 10}}
         />
@@ -45,7 +58,7 @@ class GOffline extends React.Component {
 
 var styles = StyleSheet.create({
   container: {
-    backgroundColor: 'white',
+    backgroundColor: GColors.white,
     flex: 1,
     alignItems: 'center',
     justifyContent: 'center',
