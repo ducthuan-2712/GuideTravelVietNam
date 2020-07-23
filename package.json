@@ -21,7 +21,7 @@
     "moment": "2.19.3",
     "moment-timezone": "^0.5.11",
     "node-pre-gyp": "^0.10.0",
-    "parse": "^1.10.0",
+    "parse": "^2.15.0",
     "react": "16.0.0-alpha.6",
     "react-native": "0.44.0",
     "react-native-calendars": "^1.17.6",
